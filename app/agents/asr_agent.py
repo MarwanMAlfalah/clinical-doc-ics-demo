@@ -3,6 +3,7 @@ from typing import Dict, Any, Optional, List
 from faster_whisper import WhisperModel
 
 
+
 @dataclass
 class ASRResult:
     text: str
