@@ -36,7 +36,7 @@ class ClinicalDocPipeline:
         self.std_agent = StandardizerAgent("app/kb/ontology_stub.json")
         self.sup_agent = SupervisorAgent(min_length=150)
 
-    def run_full(self, audio_path: str) -> PipelineOutput:
+    def run_full(self, audio_path: str, force_human_review: bool = False) -> PipelineOutput:
         sm = StateMachine()
 
         # ASR
@@ -54,6 +54,14 @@ class ClinicalDocPipeline:
         # Supervisor
         sup = self.sup_agent.decide(asr.text, soap)
         sm.transition("S_SUP", "u_sup", {"decision": sup.action, "reasons": sup.reasons})
+
+        # Force Human Review (manual override)
+        if force_human_review:
+            sup.action = "HUMAN_REVIEW"
+            sup.reasons["manual_override"] = True
+            sup.reasons["override_reason"] = "Force Human Review enabled by user"
+            sm.transition("S_SUP", "u_override", {"decision": sup.action, "reasons": sup.reasons})
+
 
         # Final
         sm.transition("S_final", "u_finalize", {"final": sup.action})

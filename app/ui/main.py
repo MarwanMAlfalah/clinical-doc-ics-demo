@@ -1,12 +1,19 @@
 import tempfile
 import streamlit as st
+import pandas as pd
+
 
 from app.config.settings import Settings
 from app.core.pipeline import ClinicalDocPipeline
+from app.core.diagrams import build_state_diagram
 
+force_human = st.checkbox("Force Human Review (manual override)", value=False)
 st.set_page_config(page_title="Clinical Doc ICS Demo", layout="wide")
 st.title("Clinical Documentation ICS Demo")
-st.caption("Step 4 (ICS): Audio → ASR → LLM → Standardizer → Supervisor → Final + State Log")
+st.caption("(ICS): Audio → ASR → LLM → Standardizer → Supervisor → Final + State Log")
+st.subheader("ICS State Diagram")
+st.graphviz_chart(build_state_diagram())
+
 
 settings = Settings()
 pipeline = ClinicalDocPipeline(settings)
@@ -23,7 +30,7 @@ if uploaded:
 
     if st.button("Run Full ICS Pipeline"):
         with st.spinner("Running full ICS pipeline..."):
-            out = pipeline.run_full(audio_path)
+            out = pipeline.run_full(audio_path, force_human_review=force_human)
 
         st.success(f"Done. Final decision: {out.sup.action}")
 
@@ -47,5 +54,9 @@ if uploaded:
         st.write(f"**Action:** {out.sup.action}")
         st.json(out.sup.reasons)
 
-        st.subheader("State Transition Log (Part 4)")
+        st.subheader("State Transition Log")
+
+        log_df = pd.DataFrame(out.meta["state_log"])
+        st.dataframe(log_df, use_container_width=True)
+
         st.json(out.meta["state_log"])

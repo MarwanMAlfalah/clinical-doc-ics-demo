@@ -6,3 +6,5 @@ requests>=2.32.0
 faster-whisper>=1.0.0
 soundfile>=0.12.1
 numpy>=1.26.4
+graphviz>=0.20.3
+pandas>=2.2.2
