@@ -1,0 +1,18 @@
+{
+  "symptoms": {
+    "fever": ["fever", "high temperature", "temperature"],
+    "headache": ["headache", "head pain"],
+    "cough": ["cough", "coughing"],
+    "sore_throat": ["sore throat", "throat pain"],
+    "fatigue": ["fatigue", "tired", "tiredness"],
+    "dizziness": ["dizzy", "dizziness", "lightheaded"]
+  },
+  "medications": {
+    "paracetamol": ["paracetamol", "acetaminophen", "tylenol"],
+    "ibuprofen": ["ibuprofen", "advil", "nurofen"]
+  },
+  "conditions": {
+    "upper_respiratory_infection": ["cold", "upper respiratory infection", "flu", "influenza"],
+    "migraine": ["migraine"]
+  }
+}

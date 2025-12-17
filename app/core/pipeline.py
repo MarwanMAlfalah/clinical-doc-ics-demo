@@ -1,17 +1,21 @@
 from dataclasses import dataclass
 from typing import Dict, Any
-from app.agents.asr_agent import ASRResult
+
+from app.config.settings import Settings
+from app.agents.asr_agent import ASRAgent, ASRResult
+from app.agents.llm_agent_groq import GroqLLMAgent
+from app.agents.standardizer_agent import StandardizerAgent, StandardizationResult
+from app.agents.supervisor_agent import SupervisorAgent, SupervisorDecision
+from app.core.state_machine import StateMachine
+
 
 @dataclass
 class PipelineOutput:
     asr: ASRResult
     soap_note: str
+    std: StandardizationResult
+    sup: SupervisorDecision
     meta: Dict[str, Any]
-
-
-from app.config.settings import Settings
-from app.agents.asr_agent import ASRAgent, ASRResult
-from app.agents.llm_agent_groq import GroqLLMAgent
 
 
 class ClinicalDocPipeline:
@@ -29,20 +33,37 @@ class ClinicalDocPipeline:
             model=settings.GROQ_MODEL
         )
 
-    def run_asr_to_soap(self, audio_path: str) -> PipelineOutput:
-        # 1) ASR
-        asr_result = self.asr_agent.transcribe(audio_path=audio_path, language="en")
+        self.std_agent = StandardizerAgent("app/kb/ontology_stub.json")
+        self.sup_agent = SupervisorAgent(min_length=150)
 
-        # 2) LLM SOAP note
-        soap_note = self.llm_agent.generate_soap(asr_result.text)
+    def run_full(self, audio_path: str) -> PipelineOutput:
+        sm = StateMachine()
 
+        # ASR
+        asr = self.asr_agent.transcribe(audio_path=audio_path, language="en")
+        sm.transition("S_ASR", "u_asr", {"segments": len(asr.segments)})
+
+        # LLM
+        soap = self.llm_agent.generate_soap(asr.text)
+        sm.transition("S_LLM", "u_llm", {"llm_model": self.settings.GROQ_MODEL})
+
+        # Standardizer
+        std = self.std_agent.standardize(asr.text, soap)
+        sm.transition("S_STD", "u_std", {"entities": {k: len(v) for k, v in std.entities.items()}})
+
+        # Supervisor
+        sup = self.sup_agent.decide(asr.text, soap)
+        sm.transition("S_SUP", "u_sup", {"decision": sup.action, "reasons": sup.reasons})
+
+        # Final
+        sm.transition("S_final", "u_finalize", {"final": sup.action})
 
         meta = {
-            "stage": "LLM_DONE",
+            "stage": "DONE",
             "asr_model": self.settings.ASR_MODEL_SIZE,
             "llm_model": self.settings.GROQ_MODEL,
-            "state_transition": ["S_ASR", "S_LLM"]
+            "final_decision": sup.action,
+            "state_log": [e.__dict__ for e in sm.log]
         }
 
-        return PipelineOutput(asr=asr_result, soap_note=soap_note, meta=meta)
-
+        return PipelineOutput(asr=asr, soap_note=soap, std=std, sup=sup, meta=meta)

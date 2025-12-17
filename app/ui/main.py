@@ -6,7 +6,7 @@ from app.core.pipeline import ClinicalDocPipeline
 
 st.set_page_config(page_title="Clinical Doc ICS Demo", layout="wide")
 st.title("Clinical Documentation ICS Demo")
-st.caption("Step 3 (MVP): Audio Upload → ASR Transcript → Groq LLaMA SOAP Note")
+st.caption("Step 4 (ICS): Audio → ASR → LLM → Standardizer → Supervisor → Final + State Log")
 
 settings = Settings()
 pipeline = ClinicalDocPipeline(settings)
@@ -21,11 +21,11 @@ if uploaded:
 
     st.audio(audio_path)
 
-    if st.button("Run ASR → SOAP Note (Groq LLaMA)"):
-        with st.spinner("Running ASR..."):
-            out = pipeline.run_asr_to_soap(audio_path)
+    if st.button("Run Full ICS Pipeline"):
+        with st.spinner("Running full ICS pipeline..."):
+            out = pipeline.run_full(audio_path)
 
-        st.success("Done.")
+        st.success(f"Done. Final decision: {out.sup.action}")
 
         col1, col2 = st.columns(2)
 
@@ -39,5 +39,13 @@ if uploaded:
             st.subheader("SOAP Note (LLM Output)")
             st.write(out.soap_note)
 
-        st.subheader("Meta / State Transition")
-        st.json(out.meta)
+        st.subheader("Standardized Entities (Ontology Mapping)")
+        st.json(out.std.entities)
+        st.info(out.std.normalized_summary)
+
+        st.subheader("Supervisor Decision")
+        st.write(f"**Action:** {out.sup.action}")
+        st.json(out.sup.reasons)
+
+        st.subheader("State Transition Log (Part 4)")
+        st.json(out.meta["state_log"])
