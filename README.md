@@ -232,38 +232,26 @@ This project supports research in:
 * Knowledge-based supervision
 * Explainable AI for healthcare
 * Human–AI collaboration
-<<<<<<< HEAD
 
 Intelligent Control Systems (ICS)
-=======
->>>>>>> 5ccc232 (Resolve merge conflict)
 
 ---
 
-<<<<<<< HEAD
-=======
-## 📄 License
-
->>>>>>> 5ccc232 (Resolve merge conflict)
 MIT License
 Free to use for research and educational purposes.
 
 ---
 
 ## ✨ Author
-<<<<<<< HEAD
 
 **Marwan M. Alfalah**
 MSc Research Project for NuroScience module Intelligent Systems & Artificial Intelligence
-=======
->>>>>>> 5ccc232 (Resolve merge conflict)
 
 **Marwan M. Alfalah**
 MSc Research Project for NuroScience module Intelligent Systems & Artificial Intelligence
 
 ---
 
-<<<<<<< HEAD
 * Streaming ASR with incremental SOAP updates
 * Expanded medical knowledge graphs (SNOMED / ICD)
 * Reinforcement-learning-based supervisor policies
@@ -272,15 +260,3 @@ MSc Research Project for NuroScience module Intelligent Systems & Artificial Int
 ```
 
 ```
-=======
-## 🧭 Future Work
-
-* Streaming ASR with incremental SOAP updates
-* Expanded medical knowledge graphs (SNOMED / ICD)
-* Reinforcement-learning-based supervisor policies
-* PDF / EHR export
-* FastAPI backend for production deployment
-```
-
-```
->>>>>>> 5ccc232 (Resolve merge conflict)
