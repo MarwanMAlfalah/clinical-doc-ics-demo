@@ -123,11 +123,8 @@ clinical-doc-ics-demo/
 └── README.md
 ```
 
----
-
-## 🚀 Quick Start
-
-### 1) Create a virtual environment
+🚀 Quick Start
+1️⃣ Create a virtual environment
 
 ```bash
 python -m venv .venv
@@ -198,9 +195,9 @@ Open in browser:
 http://localhost:8501
 ```
 
----
+🧪 Example Outputs
 
-## 🧪 Example Outputs
+Full ASR transcript with timestamps
 
 * Full ASR transcript with timestamps
 * Structured SOAP clinical note
@@ -208,9 +205,9 @@ http://localhost:8501
 * Supervisor decision (`APPROVE` / `HUMAN_REVIEW`)
 * State transition log
 
----
+Normalized medical entities
 
-## 🔐 Safety & Ethics
+Supervisor decision (APPROVE / HUMAN_REVIEW)
 
 * Human-in-the-loop supervision
 * Explicit supervisor control agent
@@ -218,9 +215,19 @@ http://localhost:8501
 * No automated diagnosis
 * Research and educational use only
 
----
+🔐 Safety & Ethics
 
-## 🎓 Research Context
+Human-in-the-loop supervision
+
+Explicit supervisor control agent
+
+Manual override support
+
+No automated diagnosis
+
+Research and educational use only
+
+🎓 Research Context
 
 This project supports research in:
 
@@ -230,23 +237,23 @@ This project supports research in:
 * Explainable AI for healthcare
 * Human–AI collaboration
 
----
+Intelligent Control Systems (ICS)
 
-## 📄 License
+Multi-Agent LLM Architectures
 
 MIT License
 Free to use for research and educational purposes.
 
----
+✨ Author
 
 ## ✨ Author
 
 **Marwan M. Alfalah**
 MSc Research Project for NuroScience module Intelligent Systems & Artificial Intelligence
 
----
+🧭 Future Work
 
-## 🧭 Future Work
+Streaming ASR with incremental SOAP updates
 
 * Streaming ASR with incremental SOAP updates
 * Expanded medical knowledge graphs (SNOMED / ICD)
