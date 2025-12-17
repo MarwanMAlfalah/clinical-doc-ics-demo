@@ -123,9 +123,15 @@ clinical-doc-ics-demo/
 └── README.md
 ```
 
-🚀 Quick Start
-1️⃣ Create a virtual environment
+---
 
+<<<<<<< HEAD
+=======
+## 🚀 Quick Start
+
+### 1) Create a virtual environment
+
+>>>>>>> 5ccc232 (Resolve merge conflict)
 ```bash
 python -m venv .venv
 ```
@@ -195,9 +201,9 @@ Open in browser:
 http://localhost:8501
 ```
 
-🧪 Example Outputs
+---
 
-Full ASR transcript with timestamps
+## 🧪 Example Outputs
 
 * Full ASR transcript with timestamps
 * Structured SOAP clinical note
@@ -205,9 +211,9 @@ Full ASR transcript with timestamps
 * Supervisor decision (`APPROVE` / `HUMAN_REVIEW`)
 * State transition log
 
-Normalized medical entities
+---
 
-Supervisor decision (APPROVE / HUMAN_REVIEW)
+## 🔐 Safety & Ethics
 
 * Human-in-the-loop supervision
 * Explicit supervisor control agent
@@ -215,19 +221,9 @@ Supervisor decision (APPROVE / HUMAN_REVIEW)
 * No automated diagnosis
 * Research and educational use only
 
-🔐 Safety & Ethics
+---
 
-Human-in-the-loop supervision
-
-Explicit supervisor control agent
-
-Manual override support
-
-No automated diagnosis
-
-Research and educational use only
-
-🎓 Research Context
+## 🎓 Research Context
 
 This project supports research in:
 
@@ -236,24 +232,48 @@ This project supports research in:
 * Knowledge-based supervision
 * Explainable AI for healthcare
 * Human–AI collaboration
+<<<<<<< HEAD
 
 Intelligent Control Systems (ICS)
+=======
+>>>>>>> 5ccc232 (Resolve merge conflict)
 
-Multi-Agent LLM Architectures
+---
 
+<<<<<<< HEAD
+=======
+## 📄 License
+
+>>>>>>> 5ccc232 (Resolve merge conflict)
 MIT License
 Free to use for research and educational purposes.
 
-✨ Author
+---
 
 ## ✨ Author
+<<<<<<< HEAD
+
+**Marwan M. Alfalah**
+MSc Research Project for NuroScience module Intelligent Systems & Artificial Intelligence
+=======
+>>>>>>> 5ccc232 (Resolve merge conflict)
 
 **Marwan M. Alfalah**
 MSc Research Project for NuroScience module Intelligent Systems & Artificial Intelligence
 
-🧭 Future Work
+---
 
-Streaming ASR with incremental SOAP updates
+<<<<<<< HEAD
+* Streaming ASR with incremental SOAP updates
+* Expanded medical knowledge graphs (SNOMED / ICD)
+* Reinforcement-learning-based supervisor policies
+* PDF / EHR export
+* FastAPI backend for production deployment
+```
+
+```
+=======
+## 🧭 Future Work
 
 * Streaming ASR with incremental SOAP updates
 * Expanded medical knowledge graphs (SNOMED / ICD)
@@ -263,3 +283,4 @@ Streaming ASR with incremental SOAP updates
 ```
 
 ```
+>>>>>>> 5ccc232 (Resolve merge conflict)
