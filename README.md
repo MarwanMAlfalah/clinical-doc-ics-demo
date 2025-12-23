@@ -234,9 +234,9 @@ MSc Research Project for NuroScience module Intelligent Systems & Artificial Int
 
 ---
 
+## 📌 Future Work
 * Streaming ASR with incremental SOAP updates
 * Expanded medical knowledge graphs (SNOMED / ICD)
 * Reinforcement-learning-based supervisor policies
 * PDF / EHR export
 * FastAPI backend for production deployment
-```
