@@ -19,6 +19,10 @@ from app.config.settings import Settings
 from app.core.pipeline import ClinicalDocPipeline
 from app.core.diagrams import build_state_diagram
 from app.ui.live_recorder import push_audio_frame, drain_audio_to_wav
+import pandas as pd
+
+if "last_out" not in st.session_state:
+    st.session_state["last_out"] = None
 
 
 st.set_page_config(page_title="Clinical Doc ICS Demo", layout="wide")

@@ -1,28 +1,17 @@
 # 🏥 Clinical Documentation ICS Demo
-## Intelligent Control System for Automated Clinical Documentation  
+## Intelligent Control System for Automated Clinical Documentation  
 **(ASR + Groq LLaMA + Multi-Agent Control)**
 
 ---
 
 ## 📌 Overview
-
-This repository presents a **research-oriented software prototype** that implements an  
-**Intelligent Control System (ICS)** for automated clinical documentation.
-
-The system processes **doctor–patient conversations** and produces structured  
-**SOAP clinical notes** using a **multi-agent architecture** with explicit control logic,
-supervision, and state transitions.
-
-This project is designed as an **academic research demo** aligned with:
-
-* Intelligent Control Systems (ICS)
-* Multi-Agent Systems (MAS)
-* Large Language Models (LLMs)
-* Human-in-the-loop AI for healthcare
+Research-oriented prototype implementing an **Intelligent Control System (ICS)** for automated clinical documentation.
+Processes **doctor–patient conversations** and produces structured **SOAP notes** via a **multi-agent pipeline** with supervision and state transitions.
 
 ---
 
 ## 🧠 System Architecture
+
 
 The system follows a **closed-loop control pipeline**:
 
@@ -93,45 +82,36 @@ The system is modeled as a **finite-state intelligent control system**.
 
 ```text
 clinical-doc-ics-demo/
-├── app/
-│   ├── agents/
-│   │   ├── asr_agent.py            # Whisper ASR agent
-│   │   ├── llm_agent_groq.py       # Groq LLaMA agent
-│   │   ├── standardizer_agent.py   # Ontology mapping
-│   │   └── supervisor_agent.py     # Safety & quality control
-│   │
-│   ├── core/
-│   │   ├── pipeline.py             # ICS pipeline orchestration
-│   │   ├── state_machine.py        # State definitions & transitions
-│   │   └── diagrams.py             # State diagram generation
-│   │
-│   ├── config/
-│   │   └── settings.py             # Environment & model settings
-│   │
-│   ├── ui/
-│   │   ├── main.py                 # Streamlit user interface
-│   │   └── live_recorder.py        # Live microphone recording
-│   │
-│   └── kb/
-│       └── ontology.json           # Medical entity mappings
 │
-├── docs/                           # Research documentation
-├── tests/                          # Optional unit tests
-├── requirements.txt
+├── app/
+│   ├── agents/        # ASR / LLM / Standardizer / Supervisor
+│   ├── config/        # Settings & environment configuration
+│   ├── core/          # Pipeline, state machine, diagrams
+│   ├── kb/            # Ontology / knowledge base
+│   ├── storage/       # (NEW) audio files, logs, temp artifacts
+│   ├── ui/            # Streamlit UI, live recording, streaming
+│   └── __init__.py
+│
+├── docs/
+│   ├── API.md         # Public / internal API documentation
+│   ├── ARCHITECTURE.md# System architecture & design decisions
+│   └── STATES.md      # State machine definitions & transitions
+│
+├── tests/
+│   └── test_pipeline.py
+│
 ├── .env.example
+├── .gitignore
 ├── LICENSE
-└── README.md
+├── README.md
+├── requirements.txt
+└── run_streamlit.py
 ```
 
----
+## ▶️ 🚀 Quick Start
 
-<<<<<<< HEAD
-=======
-## 🚀 Quick Start
+**1. Create a virtual environment**
 
-### 1) Create a virtual environment
-
->>>>>>> 5ccc232 (Resolve merge conflict)
 ```bash
 python -m venv .venv
 ```
@@ -152,7 +132,7 @@ source .venv/bin/activate
 
 ---
 
-### 2) Install dependencies
+### 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -193,6 +173,11 @@ All outputs are **assistive clinical documentation** and must be reviewed by a c
 
 ```bash
 streamlit run app/ui/main.py
+```
+or
+
+```bash
+python run_streamlit.py
 ```
 
 Open in browser:
@@ -247,9 +232,6 @@ Free to use for research and educational purposes.
 **Marwan M. Alfalah**
 MSc Research Project for NuroScience module Intelligent Systems & Artificial Intelligence
 
-**Marwan M. Alfalah**
-MSc Research Project for NuroScience module Intelligent Systems & Artificial Intelligence
-
 ---
 
 * Streaming ASR with incremental SOAP updates
@@ -257,6 +239,4 @@ MSc Research Project for NuroScience module Intelligent Systems & Artificial Int
 * Reinforcement-learning-based supervisor policies
 * PDF / EHR export
 * FastAPI backend for production deployment
-```
-
 ```

@@ -23,15 +23,16 @@ class ClinicalDocPipeline:
         self.settings = settings
 
         self.asr_agent = ASRAgent(
-            model_size=settings.ASR_MODEL_SIZE,
-            device=settings.ASR_DEVICE,
-            compute_type=settings.ASR_COMPUTE_TYPE,
+            model_size=settings.asr_model_size,
+            device=settings.asr_device,
+            compute_type=settings.asr_compute_type,
         )
 
         self.llm_agent = GroqLLMAgent(
-            api_key=settings.GROQ_API_KEY,
-            model=settings.GROQ_MODEL
+            api_key=settings.groq_api_key,
+            model=settings.groq_model
         )
+
 
         self.std_agent = StandardizerAgent("app/kb/ontology_stub.json")
         self.sup_agent = SupervisorAgent(min_length=150)
@@ -45,7 +46,7 @@ class ClinicalDocPipeline:
 
         # LLM
         soap = self.llm_agent.generate_soap(asr.text)
-        sm.transition("S_LLM", "u_llm", {"llm_model": self.settings.GROQ_MODEL})
+        sm.transition("S_LLM", "u_llm", {"llm_model": self.settings.groq_model})
 
         # Standardizer
         std = self.std_agent.standardize(asr.text, soap)
@@ -68,8 +69,8 @@ class ClinicalDocPipeline:
 
         meta = {
             "stage": "DONE",
-            "asr_model": self.settings.ASR_MODEL_SIZE,
-            "llm_model": self.settings.GROQ_MODEL,
+            "asr_model": self.settings.asr_model_size,
+            "llm_model": self.settings.groq_model,
             "final_decision": sup.action,
             "state_log": [e.__dict__ for e in sm.log]
         }
