@@ -1,6 +1,39 @@
-# 🏥 Clinical Documentation ICS Demo
-## Intelligent Control System for Automated Clinical Documentation  
-**(ASR + Groq LLaMA + Multi-Agent Control)**
+<p align="center">
+  <img src="docs/assets/banner.png" alt="Clinical Documentation ICS Demo" width="100%">
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?logo=python" />
+  <img src="https://img.shields.io/badge/ASR-Whisper-orange" />
+  <img src="https://img.shields.io/badge/LLM-Groq%20LLaMA-red" />
+  <img src="https://img.shields.io/badge/UI-Streamlit-ff4b4b" />
+  <img src="https://img.shields.io/badge/ICS-State%20Machine-purple" />
+  <img src="https://img.shields.io/badge/License-MIT-green" />
+</p>
+
+
+## 🚑 Clinical Documentation ICS Demo
+
+This project presents a **research-oriented Intelligent Control System (ICS)** designed to automate clinical documentation workflows.
+
+The system integrates:
+- **Automatic Speech Recognition (ASR)** for doctor–patient conversations
+- **Large Language Models (LLMs)** for structured SOAP note generation
+- **Ontology-based standardization**
+- **Supervisory decision logic** with human-in-the-loop override
+- **State-machine–driven execution with full traceability**
+
+The project is implemented as an interactive **Streamlit application** and targets academic research, applied AI systems, and healthcare decision support.
+
+## ✨ Key Features
+
+- 🎙️ **Audio Upload & Live Recording**
+- 🧠 **LLM-based SOAP Note Generation**
+- 🧩 **Ontology Mapping & Normalization**
+- 🛡️ **Supervisor Agent for Quality & Safety**
+- 🔁 **Human-in-the-Loop Override**
+- 🧭 **Explicit State Machine & Transition Log**
+- 📊 **Transparent, Auditable Decision Flow**
 
 ---
 
@@ -9,6 +42,18 @@ Research-oriented prototype implementing an **Intelligent Control System (ICS)**
 Processes **doctor–patient conversations** and produces structured **SOAP notes** via a **multi-agent pipeline** with supervision and state transitions.
 
 ---
+
+## 🖥️ Application Interface
+
+### Main Interface
+<img src="docs/assets/screenshots/main_interface.png" width="100%">
+
+### SOAP Note Generation
+<img src="docs/assets/screenshots/soap_output.png" width="100%">
+
+### State Transition Log
+<img src="docs/assets/screenshots/state_log.png" width="100%">
+
 
 ## 🧠 System Architecture
 
